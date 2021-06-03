@@ -190,58 +190,6 @@ class Main
 		return $result;
     }
 
-    public function evaluate(String $user, String $name, String $subject, String $role):string|array {
-
-        // Перевіряємо в БД, чи оцінював студент даного викладача за цим предметом і роллю раніше
-        // Якщо так, то повертаємо рядок з відповідним повідомленням
-
-        // Якщо ні, то створюємо перелік питань для даної ролі
-        // За допомогою ще не створеного типу 'Форма' для заповнення користувачем набору даних,
-        // відправляємо відповідь до головного боту
-
-        //Отриманний результат записуэмо до БД й перераховуэмо результат
-    }
-
-    //public function getScheduleSubjects(String $user, String $name):?array {
-    public function getScheduleSubjects(String $user):?array {
-
-        $response = $this->uni()->get('accounts', ['type'=> 'user', 'user'=> $user], 'account/list')->one();
-        return json_decode($response);
-
-//        // Виконуємо запит до сервісу аккаунтів для отримання групи користувача
-//        $account = new \Requests\Account();
-//        $group = $account->makeRequest($user);
-//
-//        // Виконуємо запит до сервісу розкладу для перевірки наявності викладача та отримання дисциплін, які він викладає
-//        $schedule = new \Requests\Schedule();
-//        $list = $schedule->makeRequest($group);
-//        $schedule->createSubjectList($list);
-//        // Якщо такий викладач викладає заданій групі, то відправляємо головному боту перелік дисциплін з
-//        // вказаною ролю (лектор/практик), які викладає цей викладач, щоб користувач міг обрати, за якою дисципліною оцінити
-//        return $schedule->createSubjectList($list);
-    }
-
-    public function getRatingSubjects(String $name):?array {
-        $result = null;
-
-        // Шукаєму в БД наявність рейтингу даного викладача, і повертаємо усі дисципліни (не враховуючи роль),
-        // за якими його було оцінено
-
-        // Повертає перелік дисциплін, щоб користувач міг обрати
-
-        return $result;
-    }
-
-
-    public function rating(String $name, String $subject):string|array {
-        $result = null;
-        $rating = new \Library\Rating($name, $subject);
-        $result = $rating->drawImage(); // Повертає зображення/два зображення
-
-        return $result;
-    }
-
-
 	public function __construct() {
 		$this->db = new \Library\MySQL('core',
 			\Library\MySQL::connect(
